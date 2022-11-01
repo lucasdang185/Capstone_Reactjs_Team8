@@ -1,17 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "antd/dist/antd.css";
+import Cart from "./pages/Cart/Cart";
+import Detail from "./pages/Detail/Detail";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Profile from "./pages/Profile/Profile";
+import Register from "./pages/Register/Register";
+import Serach from "./pages/Search/Serach";
+import HomeTemplate from "./templates/HomeTemplate/HomeTemplate";
+import './index.scss'
+import {Provider} from 'react-redux'
+import { store } from "./redux/configStore";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+  <BrowserRouter>
+    <Routes>
+      <Route path="" element={<HomeTemplate/>}>
+        <Route index element={<Home/>}></Route>
+        <Route path="login" element={<Login/>}></Route>
+        <Route path="register" element={<Register/>}></Route>
+        <Route path="cart" element={<Cart/>}></Route>
+        <Route path="search" element={<Serach/>}></Route>
+        <Route path="profile" element={<Profile/>}></Route>
+        <Route path="detail" >
+          <Route path=":id" element={<Detail/>}></Route>
+        </Route>
+        <Route path="*" element={<Navigate to={""}/>}></Route>
+      </Route>
+    </Routes>
+  </BrowserRouter>
+  </Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
