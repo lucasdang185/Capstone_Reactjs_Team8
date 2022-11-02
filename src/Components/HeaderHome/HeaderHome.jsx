@@ -2,9 +2,9 @@ import React from "react";
 
 export default function HeaderHome() {
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-sm navbar-dark " style={{background:'#000'}}>
       <a className="navbar-brand" href="#">
-        Navbar
+        <img src="./img/image 3.png" style={{padding:0}} alt="..." /> 
       </a>
       <button
         className="navbar-toggler d-lg-none"
@@ -61,6 +61,7 @@ export default function HeaderHome() {
             Search
           </button>
         </form>
+        
       </div>
     </nav>
   );

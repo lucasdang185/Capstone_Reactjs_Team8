@@ -11,6 +11,7 @@ import Register from "./pages/Register/Register";
 import Serach from "./pages/Search/Serach";
 import HomeTemplate from "./templates/HomeTemplate/HomeTemplate";
 import './index.scss'
+import './assets/scss/components/_FooterHome.scss'
 import {Provider} from 'react-redux'
 import { store } from "./redux/configStore";
 
