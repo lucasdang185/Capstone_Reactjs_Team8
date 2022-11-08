@@ -1,6 +1,16 @@
 import React from "react";
-
+import { NavLink } from "react-router-dom";
+import {useSelector} from 'react-redux'
 export default function HeaderHome() {
+  const {userLogin}=useSelector(state=>state.UserReducer);
+  console.log(userLogin)
+  const renderUserLogin=()=>{
+    if(userLogin.email){
+      return <NavLink className='nav-link' to ='/profile'>Hello {userLogin.email}</NavLink>
+    }
+    return <NavLink className='nav-link' to='/login'>Login</NavLink>
+  }
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark " style={{background:'#000'}}>
       <a className="navbar-brand" href="#">
@@ -18,14 +28,17 @@ export default function HeaderHome() {
       <div className="collapse navbar-collapse" id="collapsibleNavId">
         <ul className="navbar-nav me-auto mt-2 mt-lg-0">
           <li className="nav-item">
-            <a className="nav-link active" href="#" aria-current="page">
-              Home <span className="visually-hidden">(current)</span>
-            </a>
+            <NavLink className="nav-link active" to={'/home'} aria-current="page">
+              Home 
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Link
-            </a>
+            <NavLink className="nav-link" to="/register">
+              Register
+            </NavLink>
+          </li>
+          <li className="nav-item login">
+            {renderUserLogin()}
           </li>
           <li className="nav-item dropdown">
             <a
@@ -61,7 +74,6 @@ export default function HeaderHome() {
             Search
           </button>
         </form>
-        
       </div>
     </nav>
   );
