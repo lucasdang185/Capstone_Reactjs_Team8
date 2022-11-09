@@ -1,0 +1,58 @@
+@import "../themes/variable";
+
+.container {
+  .row {
+    .col {
+      margin-left: 400px;
+      input {
+        width: 400px;
+        height: 45px;
+        border: none;
+        background-color: rgba(33, 33, 33, 0.08);
+      }
+      p{
+        @include text($text-xl, $text-medium, rgba(0, 0, 0, 0.6));
+      }
+      .registerNow {
+        margin-top: 35px;   
+        display: flex;
+        flex-direction: row;
+        h5{
+            margin-left: 130px;
+            @include text($text-xl, $text-medium,#152AEB );
+        }
+        .btn-login{
+            margin-left: 35px;
+            background: #6200EE;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 28px;
+            margin-top: -10px;
+            @include text($text-xl, $text-regular, #fff);
+        }
+      }
+      .fb{
+        border: none;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        width: 400px;
+        height: 45px;
+        background-color: #1877F2;
+        border-radius: 21px;
+        padding: 25px 0;
+        i{
+            font-size: 35px;
+            color: #fff;
+            line-height: 4px;
+            margin-left: 30px;
+        }
+        p{
+          line-height: 3px;
+          margin-left: 30px;
+          @include text($text-xl, $text-regular, #fff);
+        }
+    }
+    }
+  }
+}

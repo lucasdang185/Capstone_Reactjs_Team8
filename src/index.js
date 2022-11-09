@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import Cart from "./pages/Cart/Cart";
 import Detail from "./pages/Detail/Detail";
 import Home from "./pages/Home/Home";
@@ -10,7 +10,9 @@ import Profile from "./pages/Profile/Profile";
 import Register from "./pages/Register/Register";
 import Serach from "./pages/Search/Serach";
 import HomeTemplate from "./templates/HomeTemplate/HomeTemplate";
-import './index.scss'
+import './index.scss';
+import './assets/scss/pages/register.scss';
+import './assets/scss/pages/login.scss';
 import './assets/scss/components/_FooterHome.scss'
 import {Provider} from 'react-redux'
 import { store } from "./redux/configStore";
