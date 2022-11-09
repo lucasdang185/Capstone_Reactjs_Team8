@@ -17,7 +17,7 @@ import { store } from "./redux/configStore";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-  <BrowserRouter>
+  <BrowserRouter> 
     <Routes>
       <Route path="" element={<HomeTemplate/>}>
         <Route index element={<Home/>}></Route>
