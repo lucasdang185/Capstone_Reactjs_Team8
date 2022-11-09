@@ -13,6 +13,7 @@ import HomeTemplate from "./templates/HomeTemplate/HomeTemplate";
 import './index.scss';
 import './assets/scss/pages/register.scss';
 import './assets/scss/pages/login.scss';
+import './assets/scss/pages/_detail.scss';
 import './assets/scss/components/_FooterHome.scss'
 import {Provider} from 'react-redux'
 import { store } from "./redux/configStore";

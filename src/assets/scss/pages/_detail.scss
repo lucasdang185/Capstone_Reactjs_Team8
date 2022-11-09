@@ -1,0 +1,102 @@
+@import "../themes/variable";
+
+.container {
+  .row {
+    .col-4 {
+    }
+    .col-8 {
+        padding-left: 80px;
+      h3 {
+      }
+      p {
+      }
+      h4 {
+        color: $text-c1-success;
+      }
+      ul {
+        list-style: none;
+        padding-left: 0;
+        li {
+            display: inline-block;
+            text-align: center;
+            margin-right: 20px;
+            margin-top: 16px;
+          a {
+            display: inline-block;
+                text-decoration: none;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 24px;
+                font-weight: 600;
+                background-color: #CCCCCC;
+                color: #1E1D1D;
+          }
+        }
+      }
+      .pro-quality {
+        margin-bottom: 10px;
+        font-size: 20px;
+        .btn-quality {
+            background-color: $bg-primary;
+            width: 50px;
+            height: 50px;
+            border: none;
+            color: #FFFCFC;
+        }
+        span {
+            padding:5px;
+        }
+      }
+      .add-to-card {
+        .btn-add {
+            background-color:#391b8b;
+            color:#FFFCFC ;
+            font-size: 20px;
+            padding: 10px;
+            border: none;
+        }
+      }
+    }
+  }
+  .row{
+    .col-4{
+      .card{
+        .card-body{
+          .btn{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding: 0;
+            margin-bottom: -16px;
+            margin-left: -16px;
+            width: 414px;
+            border: none;
+            background-color:#9DE167;
+          }
+          a {
+            padding-top: 12px;
+            text-decoration: none;
+            
+            width: 175px;
+            height: 55px;
+            border: none;
+            
+            @include text($text-1xl, 200, $text-c1-dark);
+          }
+
+          span {
+            text-align: center;
+            background-color: #dedddc;
+            width: 50%;
+            height: 58px;
+            padding-top: 12px;
+            line-height: 29px;
+            @include text($text-2xl, $text-semibold, $text-c1-dark);
+          }
+        }
+      }
+    }
+  }
+}

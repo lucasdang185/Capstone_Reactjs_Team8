@@ -21,6 +21,7 @@ $text-semibold: 600;
 $text-bold: 700;
 
 $bg-dark: #000;
+$bg-primary: rgba(0, 0, 255, 0.555);
 
 @mixin text($fz: $text-base, $fw: $text-regular, $c: $text-c1-dark) {
   font-size: $fz;
