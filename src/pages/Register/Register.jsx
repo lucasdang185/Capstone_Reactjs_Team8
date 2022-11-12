@@ -1,79 +1,100 @@
-import React, {useRef, useState } from 'react'
-// import {Formik} from 'formik'
+import React, { useRef, useState } from 'react'
+import { Formik, useFormik,Field } from 'formik'
+import * as yup from 'yup'
+import { registerApi } from '../../redux/Reducer/UserReducer'
+import { useDispatch } from 'react-redux'
 export default function Register() {
-  
-  const useRefRegister=useRef(
-    {email:'', password:'', confirmPassword:'', name:'', phone:''}
-  )
-const [useStateRegister,setUseStateRegister]=useState(
-    {email:'', password:'', confirmPassword:'', name:'', phone:''}
+  const dispatch = useDispatch()
+  const frm = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      name: "",
+      gender: "",
+      phone: "",
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().email("Email  number is not valid !"),
+      phone: yup.string().required().matches(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, 'Phone number is not valid !'),
+      confirmPassword: yup.string()
+        .oneOf([yup.ref("password")], "Password's not match")
+        .required("Required!"),
+      name: yup.string().required().matches(/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/, 'Name is not valid !')}
+    ),
+    onSubmit: (values) => {
+      const action = registerApi(values);
+      dispatch(action);
+    },  
+  })
 
-  )
-  const handleChange=(e)=>{
-    let {id, value}=e.target;
-
-   const values= useRefRegister.current[id]=value
-    // console.log(useRefRegister.current)  
-    setUseStateRegister({...values,values})
-    console.log(useStateRegister)
-
-  }
-  const handleSubmit=(e)=>{
-    e.preventDefault();
-  }
-  
-  
-    
 
   return (
-    <div className='container' onSubmit={handleSubmit} >
+    <div className='container' onSubmit={frm.handleSubmit} >
       <h1>Register</h1>
       <hr />
       <div className='row'>
         <div className='col-l col-5'>
           <form className='email'>
             <p>Email</p>
-            <input type="email" id='email' className='form-control' placeholder='Email' onChange={handleChange} />
-            <p className='text-danger'></p>
+            <input type="email" id='email' className='form-control' placeholder='Email' onChange={frm.handleChange} onBlur={frm.handleBlur} />
+            {frm.errors.email ? <p className=' text text-danger'>{frm.errors.email}</p> : ''}
           </form>
           <br />
           <form className='password' >
             <p>Password</p>
-            <input type="password" id='password' className='form-control' placeholder='Password' onChange={handleChange} />
+            <input type="password" id='password' className='form-control' placeholder='Password' onChange={frm.handleChange} onBlur={frm.handleBlur} />
             <p className='text-danger'></p>
           </form>
           <br />
           <form className='confirmPassword' >
             <p>Confirm Password</p>
-            <input type="password" id='confirmPassword' className='form-control' placeholder='Confirm password' onChange={handleChange} />
+            <input type="password" id='confirmPassword' className='form-control' placeholder='Confirm password' onChange={frm.handleChange} onBlur={frm.handleBlur} />
+            {frm.values.password !== frm.values.confirmPassword ? <p className=' text text-danger'>{frm.errors.confirmPassword}</p> : ''}
           </form>
         </div>
         <div className='col-r col-5'>
           <form className='name'>
             <p>Name</p>
-            <input type="text" id='name' className='form-control' placeholder='Name' onChange={handleChange} />
+            <input type="text" id='name' className='form-control' placeholder='Name' onChange={frm.handleChange} onBlur={frm.handleBlur} />
+            {frm.errors.name ? <p className=' text text-danger'>{frm.errors.name}</p> : ''}
           </form>
+          {/* <br /> */}
           <br />
           <form className='phone' >
             <p>Phone</p>
-            <input type="number" id='phone' className='form-control' placeholder='Phone' onChange={handleChange} />
+            <input type="text" id='phone' className='form-control' placeholder='Phone' onChange={frm.handleChange} onBlur={frm.handleBlur} />
+            {frm.errors.phone ? <p className=' text text-danger'>{frm.errors.phone}</p> : ''}
           </form>
           <br />
           <br />
-          <br />
+          {/* <br /> */}
           <form className='gender'>
-            <label className="form-check-label" id="gender">
+            <label className="form-check-label"  >
               <span>Gender</span>
-              <input type={'radio'} name="male" id="" value="true" />
-              Male
-              <input type="radio" name="male" id="" value="false" />
-              Female
-            </label>
+              <input
+                  type="radio"
+                  name="gender"
+                  id=""
+                  value="true"
+                  onChange={frm.handleChange}
+                />
+                <span className='male'>Male</span>
+                <input
+                  type="radio"
+                  name="gender"
+                  id=""
+                  value="false"
+                  onChange={frm.handleChange}
+                />
+                <span className='male'>Female</span>
+                </label>
           </form>
           <br />
           <br />
           <div>
-            <button className='btn btn-success'onSubmit={handleSubmit}>Submit</button>
+            <button className='btn ' onClick={() => {
+              frm.handleSubmit()
+            }}>Submit</button>
           </div>
         </div>
       </div>

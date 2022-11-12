@@ -6,7 +6,7 @@ export default function HeaderHome() {
   console.log(userLogin)
   const renderUserLogin=()=>{
     if(userLogin.email){
-      return <NavLink className='nav-link' to ='/profile'>Hello {userLogin.email}</NavLink>
+      return <NavLink className='nav-link' to ='/profile'> {userLogin.email}</NavLink>
     }
     return <NavLink className='nav-link' to='/login'>Login</NavLink>
   }
