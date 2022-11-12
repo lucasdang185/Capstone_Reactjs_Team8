@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import {useSelector} from 'react-redux'
 export default function HeaderHome() {
   const {userLogin}=useSelector(state=>state.UserReducer);
+  const {cart} = useSelector(state=>state.cartReducer);
+  
   console.log(userLogin)
   const renderUserLogin=()=>{
     if(userLogin.email){
@@ -11,6 +13,12 @@ export default function HeaderHome() {
     return <NavLink className='nav-link' to='/login'>Login</NavLink>
   }
 
+  const totalCart = () =>{
+    console.log({cart});
+    return cart?.reduce((total, prod, index ) => {
+      return (total += prod.quantity);
+    },0);
+  }
   return (
     <nav className="navbar navbar-expand-sm navbar-dark " style={{background:'#000'}}>
       <a className="navbar-brand" href="#">
@@ -73,6 +81,9 @@ export default function HeaderHome() {
           >
             Search
           </button>
+          <NavLink style={{textDecoration:'none',display:'initial'}} className="nav-item text-light px-5 " to={'cart'}>
+            <i className="fa fa-cart-plus fs-5"></i><span>({totalCart()})</span>
+          </NavLink>
         </form>
       </div>
     </nav>
