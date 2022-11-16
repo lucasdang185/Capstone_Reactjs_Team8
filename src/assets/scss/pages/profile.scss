@@ -1,25 +1,28 @@
 @import "../themes/variable";
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
 
-.container {
-  h1 {
-    margin-top: 60px;
-    margin-bottom: 30px;
-  }
-  hr {
-    margin-bottom: 40px;
-  }
-  .row {
-    .col-l {
-      p {
-        @include text($text-xl, $text-medium, rgba(0, 0, 0, 0.6));
-      }
-      input {
-        background-color: rgba(33, 33, 33, 0.08);
-      }
+
+.container{
+    h1{
+        background-image: linear-gradient(
+            to top,
+            #1b02b5 0%,
+            #9227b3 51%,
+            #f21299 100%
+          );
+          @include text($text-4xl, $text-regular, $text-c1-light);
+          width: 600px;
+          margin-left: -196px;
+          margin-bottom: 50px;
     }
-    .col-r {
-      margin-left: 220px;
-      p {
+    .row{
+        display: flex;
+        flex-direction: row;
+
+    p {
         @include text($text-xl, $text-medium, rgba(0, 0, 0, 0.6));
       }
       input {
@@ -34,7 +37,6 @@
           font-size: 80px;
           height: 23px;
           width: 30px;
-        
         }
         .male{
             font-size: 20px;
@@ -47,7 +49,18 @@
         font-weight: 500;
         padding: 15px 40px;
         border-radius: 35px;
+        margin-top: 50px;
+        margin-left: 280px;
       }
+      .col2{
+       margin-left: 50px;
+      }
+      .col3{
+       margin-left: 100px; 
+      }
+    
+    img{
+        border-radius: 50%;
     }
-  }
+}
 }

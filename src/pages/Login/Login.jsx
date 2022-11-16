@@ -1,25 +1,27 @@
 import React from 'react'
 import { useFormik } from 'formik'
-// import yup from 'yup'
 import * as yup from 'yup'
 import { loginApi } from '../../redux/Reducer/UserReducer';
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
+import LoginFB from './LoginFB';
+import { NavLink } from 'react-router-dom';
 export default function Login() {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const frm = useFormik({
     initialValues: {
       email: '',
       password: ''
     },
     validationSchema: yup.object().shape({
-      email: yup.string().email("Email không đúng định dạng !")
+      email: yup.string().email("Email  number is not valid !")
     }),
     onSubmit: (values) => {
       // console.log(values);
-      const action= loginApi(values);
+      const action = loginApi(values);
       dispatch(action);
     }
   })
+  
   return (
     <form className='container' onSubmit={frm.handleSubmit} >
       <h1>Login</h1>
@@ -37,13 +39,12 @@ export default function Login() {
             <input type="password" name='password' id='password' placeholder='Password' onChange={frm.handleChange} />
           </div>
           <div className='registerNow'>
-            <h5>Register now ?</h5>
+          <NavLink className="nav-link" to="/register">
+              Register now ?
+            </NavLink>
             <button className='btn-login' >LOGIN</button>
           </div>
-          <button className='fb' >
-            <i class="fa-brands fa-facebook"></i>
-            <p>Continue with FaceBook</p>
-          </button>
+         <LoginFB/>
         </div>
       </div>
     </form>

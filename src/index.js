@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 // import "antd/dist/antd.css";
 import Cart from "./pages/Cart/Cart";
 import Detail from "./pages/Detail/Detail";
@@ -17,13 +16,18 @@ import './assets/scss/pages/_detail.scss';
 import './assets/scss/pages/_cart.scss'
 import './assets/scss/pages/_search.scss'
 import './assets/scss/components/_FooterHome.scss'
+import './assets/scss/pages/profile.scss'
 import {Provider} from 'react-redux'
 import { store } from "./redux/configStore";
+//cấu hình history :chuyển hướng trang không dùng hook
+import { unstable_HistoryRouter as HistoryRouter, Navigate, Route, Routes } from "react-router-dom";
+import {createBrowserHistory} from 'history'
+export const  history =createBrowserHistory();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-  <BrowserRouter> 
+  <HistoryRouter history={history}> 
     <Routes>
       <Route path="" element={<HomeTemplate/>}>
         <Route index element={<Home/>}></Route>
@@ -38,6 +42,6 @@ root.render(
         <Route path="*" element={<Navigate to={""}/>}></Route>
       </Route>
     </Routes>
-  </BrowserRouter>
+  </HistoryRouter>
   </Provider>
 );
