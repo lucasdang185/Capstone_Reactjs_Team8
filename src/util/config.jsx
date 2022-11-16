@@ -1,4 +1,5 @@
 import axios from "axios"
+import {history} from '../index'
 export const USER_LOGIN ='userLogin';
 export const ACCESSTOKEN='accessToken';
 export const USER_REGISTER='userRegister'
@@ -87,7 +88,8 @@ export const http = axios.create({
 http.interceptors.request.use((config) => {
     config.headers = {
         ...config.headers,
-        TokenCyberSoft: TOKEN_CYBERSOFT
+        TokenCyberSoft: TOKEN_CYBERSOFT,
+        Authorization :'Bearer '+settings.getStorage(ACCESSTOKEN)
     }
     return config;
 
@@ -95,4 +97,21 @@ http.interceptors.request.use((config) => {
 }, err => {
     console.log(err)
     return Promise.reject(err);
+})
+
+// cấu hình cho response : sever sẽ trả dữ liệu về cho client
+http.interceptors.response.use((response)=>{
+    return response;
+
+}, (error)=>{
+    //Thất bại của tất cả request sử dụng http sẽ trả vào đây   
+    console.log(error)
+    if(error.response.status===401){
+        //chuyển hướng trang mà không cần reload loai trang để giữ lại các state hiện tại trên redux
+        history.push('/login');
+    }
+    if(error.response?.status===404){
+        history.push('/');
+    }
+    return Promise.reject(error);
 })

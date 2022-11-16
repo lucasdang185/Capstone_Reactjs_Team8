@@ -1,12 +1,22 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {useSelector} from 'react-redux'
+import { ACCESSTOKEN, settings, USER_LOGIN } from "../../util/config";
 export default function HeaderHome() {
-  const {userLogin}=useSelector(state=>state.UserReducer);
-  console.log(userLogin)
+  const {userProfile}=useSelector(state=>state.UserReducer);
+  console.log(userProfile)
   const renderUserLogin=()=>{
-    if(userLogin.email){
-      return <NavLink className='nav-link' to ='/profile'> {userLogin.email}</NavLink>
+    if(userProfile.email){
+      return <>
+      <NavLink className='nav-link' to ='/profile'> {userProfile.name}</NavLink>
+      <button className='nav-link' style={{background:'none', border:'none'}} onClick={()=>{
+        settings.eraseCookie(ACCESSTOKEN,0);
+        localStorage.removeItem(USER_LOGIN);
+        localStorage.removeItem(ACCESSTOKEN);
+        //Sau khi đăng xuất xong chuyển về trang  login đồng thời reload lại trang clear redux
+        window.location.href='/login';
+      }}> Đăng xuất</button>
+      </>
     }
     return <NavLink className='nav-link' to='/login'>Login</NavLink>
   }

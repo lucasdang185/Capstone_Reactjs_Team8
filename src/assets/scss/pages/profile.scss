@@ -1,0 +1,66 @@
+@import "../themes/variable";
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.container{
+    h1{
+        background-image: linear-gradient(
+            to top,
+            #1b02b5 0%,
+            #9227b3 51%,
+            #f21299 100%
+          );
+          @include text($text-4xl, $text-regular, $text-c1-light);
+          width: 600px;
+          margin-left: -196px;
+          margin-bottom: 50px;
+    }
+    .row{
+        display: flex;
+        flex-direction: row;
+
+    p {
+        @include text($text-xl, $text-medium, rgba(0, 0, 0, 0.6));
+      }
+      input {
+        background-color: rgba(33, 33, 33, 0.08);
+      }
+      .gender {
+        span {
+          font-size: 30px;
+        }
+        input {
+          margin-left: 50px;
+          font-size: 80px;
+          height: 23px;
+          width: 30px;
+        }
+        .male{
+            font-size: 20px;
+            transform: translateY(20);
+          }
+      }
+      .btn {
+        background-color: #6200ee;
+        color: #fff;
+        font-weight: 500;
+        padding: 15px 40px;
+        border-radius: 35px;
+        margin-top: 50px;
+        margin-left: 280px;
+      }
+      .col2{
+       margin-left: 50px;
+      }
+      .col3{
+       margin-left: 100px; 
+      }
+    
+    img{
+        border-radius: 50%;
+    }
+}
+}
