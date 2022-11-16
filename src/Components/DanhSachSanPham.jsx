@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from "react";
 import { getApi } from "../redux/Reducer/HomeReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+
 export default function DanhSachSanPham() {
   const { ProductData } = useSelector((state) => state.HomeReducer);
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export default function DanhSachSanPham() {
               <button className="btn ">
                 <NavLink to={`/detail/${pro.id}`}>Buy now</NavLink>
                 <span>${pro.price}$</span>
+                
               </button>
             </div>
           </div>

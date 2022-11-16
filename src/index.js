@@ -13,6 +13,8 @@ import './index.scss';
 import './assets/scss/pages/register.scss';
 import './assets/scss/pages/login.scss';
 import './assets/scss/pages/_detail.scss';
+import './assets/scss/pages/_cart.scss'
+import './assets/scss/pages/_search.scss'
 import './assets/scss/components/_FooterHome.scss'
 import './assets/scss/pages/profile.scss'
 import {Provider} from 'react-redux'

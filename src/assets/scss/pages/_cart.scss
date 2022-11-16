@@ -1,0 +1,41 @@
+@import "../themes/variable";
+
+.cart{
+    position: relative;
+    .table{
+        tbody{
+            tr{
+                td{
+                    img{
+                        width: 50px;
+
+                    }
+                }
+                .quantity{
+                    .btn-quantity{
+                        background-color: rgba(0, 0, 255, 0.801) ;
+                        display: inline-block ;
+                        padding: 0 5px 0 p5x;
+                        border-radius: 5px;
+                        border: none;
+                        color: white;
+                        font-weight: bold;
+                    }
+                }
+                span{
+                    margin: 5px;
+                }
+                    
+                
+            }
+        }
+    }
+    .btn-submit{
+        border-radius: 5px;
+        padding: 10px;
+        position: absolute;
+        bottom:-15;
+        right: 0;
+        background-color: $text-c1-success;
+    }
+}
