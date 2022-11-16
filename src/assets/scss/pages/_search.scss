@@ -1,0 +1,80 @@
+@import "../themes/variable";
+.search {
+    // position: relative;
+
+    form {
+        max-width: 1280px;
+        margin: 20px 0;
+
+        p {
+   
+        }
+
+        div {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+
+
+            input {
+                padding: 16px 12px 14px 14px;
+                width: 443px;
+            }
+
+            button {
+                
+            }
+        }
+
+
+    }
+
+    h2 {
+        background-color: blueviolet;
+        padding: 10px 0 10px 0;
+    }
+
+    div {
+        p {}
+
+        select {
+            width: 30%;
+        }
+    }
+}
+.row{
+    .card{
+        .btn{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding: 0;
+            margin-bottom: -16px;
+            margin-left: -16px;
+            width: 414px;
+            border: none;
+            background-color:#9DE167;
+          }
+          a {
+            padding-top: 12px;
+            text-decoration: none;
+            
+            width: 175px;
+            height: 55px;
+            border: none;
+            
+            @include text($text-1xl, 200, $text-c1-dark);
+          }
+
+          span {
+            text-align: center;
+            background-color: #dedddc;
+            width: 50%;
+            height: 58px;
+            padding-top: 12px;
+            line-height: 29px;
+            @include text($text-2xl, $text-semibold, $text-c1-dark);
+          }
+    }
+}

@@ -16,8 +16,8 @@ const cartReducer = createSlice({
     name: 'cartReducer',
     initialState,
     reducers:{
-        addToCartAction: (state, actions) => {
-            let newProduct = actions.payload;
+        addToCartAction: (state, action) => {
+            let newProduct = action.payload;
             let prodCart = {
               productId: newProduct.id,
               name: newProduct.name,
@@ -34,12 +34,12 @@ const cartReducer = createSlice({
               state.cart.push(prodCart);
             }
           },
-          totalCartAction: (state,actions) => {
-            console.log({actions});
-            state.cart = actions.payload;
+          totalCartAction: (state,action) => {
+            console.log({action});
+            state.cart = action.payload;
           },
-          tangGiamSL: (state, actions) => {
-            let { id, bool } = actions.payload;
+          tangGiamSL: (state, action) => {
+            let { id, bool } = action.payload;
             let index = state.cart.findIndex((prod) => prod.productId === id);
             if (bool) {
               state.cart[index].quantity += 1;
@@ -47,8 +47,8 @@ const cartReducer = createSlice({
               state.cart[index].quantity -= 1;
             }
           },
-          deleteCartAction:(state,actions) =>{
-            let id = actions.payload;
+          deleteCartAction:(state,action) =>{
+            let id = action.payload;
             let index = state.cart.findIndex((prod) => prod.productId === id);
             console.log({ index });
             if (index !== -1) {
@@ -56,7 +56,7 @@ const cartReducer = createSlice({
             }
             console.log(state.cart);
           },
-          postOrderAction: (state, actions) => {
+          postOrderAction: (state, action) => {
             state.cart = [];
           },
     }
