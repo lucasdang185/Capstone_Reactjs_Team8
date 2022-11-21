@@ -2,7 +2,8 @@ import axios from "axios"
 import {history} from '../index'
 export const USER_LOGIN ='userLogin';
 export const ACCESSTOKEN='accessToken';
-export const USER_REGISTER='userRegister'
+export const USER_REGISTER='userRegister';
+export const USER_PROFILE='userProfile'
 
 
 export const TOKEN_CYBERSOFT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAzMyIsIkhldEhhblN0cmluZyI6IjA4LzA0LzIwMjMiLCJIZXRIYW5UaW1lIjoiMTY4MDkxMjAwMDAwMCIsIm5iZiI6MTY1Mjg5MzIwMCwiZXhwIjoxNjgxMDU5NjAwfQ.YWfEjzumDyUA3XRRvMIkDiD1cOGgRKyAAeOTP3qTT2c'

@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios';
 // import axios from 'axios';
-import { ACCESSTOKEN, http, settings, USER_LOGIN ,USER_REGISTER} from '../../util/config';
+// import {} from '../'
+// import axios from 'axios';
+import { ACCESSTOKEN, http, settings, USER_LOGIN ,USER_PROFILE,USER_REGISTER} from '../../util/config';
 const initialState = {
 
   //nếu localStorage có dữ liệu -> load dữ liệu default cho state.userLogin của redux, nếu localStorage không có thì  gán object:{}
     userLogin: settings.getStorageJson(USER_LOGIN) ? settings.getStorageJson(USER_LOGIN):{},
     userRegister:{},
-    userProfile:{}
+    userProfile:{},
+    userUpdate:{},
 }
 
 const UserReducer = createSlice({
@@ -17,20 +19,31 @@ const UserReducer = createSlice({
     loginAction:(state,action)=>{
         const userLogin=action.payload;
         state.userLogin=userLogin
-        console.log(state.userLogin)
+        // console.log(state.userLogin)
     },
     registerAction:(state,action)=>{
       const userRegister=action.payload;
       state.userRegister=userRegister
-      console.log(state.userRegister)
+      // console.log(state.userRegister)
     },
     getUserProfileAction:(state,action)=>{
       state.userProfile=action.payload
-    }
+    },
+    updateProfileAction:(state,action)=>{
+      const userUpdate=action.payload
+      state.userUpdate=userUpdate;
+      state.userProfile=state.userUpdate
+      console.log(state.userUpdate)
+    },
+    changPasswordAction:(state,action)=>{
+      const newPassword=action.payload
+      state.userProfile.password=newPassword
+      // console.log(newPassword)
+    },
   }
 });
 
-export const {loginAction,registerAction,getUserProfileAction} = UserReducer.actions
+export const {loginAction,registerAction,getUserProfileAction,updateProfileAction,changPasswordAction} = UserReducer.actions
 
 export default UserReducer.reducer
 
@@ -71,7 +84,7 @@ export const loginFaceBook=(tokenFBApp)=>{
               dispatch(actionGetProfile);
             //lưu vào localStorage và Cookie
             settings.setStorageJson(USER_LOGIN,result.data.content);
-            settings.setStorage(ACCESSTOKEN,result.data.content);
+            settings.setStorage(ACCESSTOKEN,result.data.content.accessToken);
             // settings.setCookie(ACCESSTOKEN,result.data.content);
   }
 
@@ -94,5 +107,24 @@ export const getApiProfile=()=>{
       const result=await http.post('/api/Users/getProfile');
       const action=getUserProfileAction(result.data.content);
       dispatch(action)
+      settings.setStorageJson(USER_PROFILE,result.data.content);
+      // settings.setStorage(ACCESSTOKEN,result.data.content.accessToken);
+  }
+}
+
+export const userUpdateApi=(userUpdate)=>{
+  return async dispatch=>{
+    const result=await http.post('/api/Users/updateProfile',userUpdate)
+    const action= updateProfileAction(result.data.content);
+    dispatch(action)
+    //lưu vào localStorage và Cookie
+  }
+}
+
+
+export const changPasswordApi=(userPassword)=>{
+  return async dispatch=>{
+    const result= await http.post('/api/Users/changePassword', userPassword)
+    console.log(userPassword)
   }
 }

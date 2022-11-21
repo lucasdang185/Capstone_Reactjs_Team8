@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from "react";
-import { getApi } from "../redux/Reducer/HomeReducer";
+import { getApi } from "../../redux/Reducer/HomeReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
