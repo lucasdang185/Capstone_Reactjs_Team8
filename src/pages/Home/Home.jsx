@@ -1,5 +1,5 @@
 import React from 'react'
-import DanhSachSanPham from '../../Components/DanhSachSanPham'
+import DanhSachSanPham from './DanhSachSanPham'
 
 export default function Home() {
   return (

@@ -2,12 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import { ACCESSTOKEN, settings, USER_LOGIN } from "../../util/config";
+import {history} from '../../index' 
 export default function HeaderHome() {
   const {userProfile}=useSelector(state=>state.UserReducer);
   const { cart } = useSelector((state) => state.cartReducer);
   console.log(userProfile)
   const renderUserLogin=()=>{
     if(userProfile.email){
+      history.push('/profile')
       return <>
       <NavLink className='nav-link' to ='/profile'> {userProfile.name}</NavLink>
       <button className='nav-link' style={{background:'none', border:'none'}} onClick={()=>{
@@ -90,12 +92,6 @@ export default function HeaderHome() {
             type="text"
             placeholder="Search"
           />
-          {/* <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >
-            Search
-          </button> */}
           <NavLink className="search-bar" to="/search">
             <i className="fa fa-search"></i>
             Search

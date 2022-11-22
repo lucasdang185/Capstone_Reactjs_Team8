@@ -19,7 +19,7 @@ export default function LoginFB() {
             callback={responseFacebook}
             render={renderProps => (
             //   <button onClick={renderProps.onClick}>This is my custom FB button</button>
-             <button className='fb' >
+             <button className='fb'  onClick={renderProps.onClick}>
             <i class="fa-brands fa-facebook"></i>
             <p>Continue with FaceBook</p>
           </button> 

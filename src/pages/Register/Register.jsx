@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react'
-import { Formik, useFormik,Field } from 'formik'
+import { Formik, useFormik } from 'formik'
 import * as yup from 'yup'
 import { registerApi } from '../../redux/Reducer/UserReducer'
 import { useDispatch } from 'react-redux'
 export default function Register() {
+  const {userRegister}=useDispatch(state=>state.UserReducer)
+  console.log(userRegister)
   const dispatch = useDispatch()
   const frm = useFormik({
     initialValues: {
@@ -77,6 +79,7 @@ export default function Register() {
                   id=""
                   value="true"
                   onChange={frm.handleChange}
+                  checked={frm.values.gender}
                 />
                 <span className='male'>Male</span>
                 <input
@@ -85,6 +88,7 @@ export default function Register() {
                   id=""
                   value="false"
                   onChange={frm.handleChange}
+                  checked={frm.values.gender}
                 />
                 <span className='male'>Female</span>
                 </label>
