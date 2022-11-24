@@ -13,7 +13,7 @@ export default function Login() {
       password: ''
     },
     validationSchema: yup.object().shape({
-      email: yup.string().email("Email  number is not valid !")
+      email: yup.string().email("Email  is not valid !")
     }),
     onSubmit: (values) => {
       // console.log(values);

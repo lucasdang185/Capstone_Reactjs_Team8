@@ -117,7 +117,9 @@ export const userUpdateApi=(userUpdate)=>{
     const result=await http.post('/api/Users/updateProfile',userUpdate)
     const action= updateProfileAction(result.data.content);
     dispatch(action)
-    //lưu vào localStorage và Cookie
+    settings.setStorageJson(USER_PROFILE,result.data.content);
+    settings.setStorage(ACCESSTOKEN,result.data.content.accessToken);
+    settings.setCookie(ACCESSTOKEN,result.data.content.accessToken);
   }
 }
 

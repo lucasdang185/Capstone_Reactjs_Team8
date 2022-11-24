@@ -66,7 +66,7 @@ export default function Profile() {
       email:userProfile.email,
       name:userProfile.name,
       phone:userProfile.phone,
-      gender:""
+      gender:userProfile.gender,
     },
     validationSchema: yup.object().shape({
       email: yup.string().required().email("Email  number is not valid !"),
@@ -76,9 +76,14 @@ export default function Profile() {
     onSubmit: (values) => {
       const action = userUpdateApi(values);
       dispatch(action);
+      alert('Update successful')
       console.log(values)  
     }
   })
+  
+  // useEffect=(()=>{
+
+  // },[userProfile.ordersHistory])
 
   return (
     <div className='container' onSubmit={frm.handleSubmit}>
@@ -121,7 +126,7 @@ export default function Profile() {
                   id=""
                   value='true'
                   onChange={frm.handleChange}
-                  checked={frm.values.gender}
+                  // checked={frm.values.gender}
                 />
                 <span className='male'>Male</span>
                 <input
@@ -130,7 +135,7 @@ export default function Profile() {
                   id=""
                   value='false'
                   onChange={frm.handleChange}
-                  checked={frm.values.gender}  
+                  // checked={frm.values.gender}  
 
                 />
                 <span className='male'>Female</span>
