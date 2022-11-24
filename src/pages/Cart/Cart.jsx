@@ -8,7 +8,7 @@ import {
 } from "../../util/config";
 
 export default function Cart() {
-  const { cart, order } = useSelector((state) => state.cartReducer);
+  const { cart } = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
   const tangGiam = (id, bool) => {
     let value = {
