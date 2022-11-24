@@ -144,7 +144,6 @@ export default function Profile() {
         <button className="btn btn-dark text-light">Order history</button>
       </div>
 
-
     </div>
   )
 }

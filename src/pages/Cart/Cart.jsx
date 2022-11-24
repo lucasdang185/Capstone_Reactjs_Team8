@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {tangGiamSL,deleteCartAction,postOrderAction} from "../../redux/Reducer/cartReducer"
+import {tangGiamSL,deleteCartAction,postOrderAction, postOrder} from "../../redux/Reducer/cartReducer"
 
 import {
   settings,
@@ -32,7 +32,7 @@ export default function Cart() {
       email: email,
       orderDetail: cart,
     };
-    const action = postOrderAction(order); // truyển data order
+    const action = postOrder(order); // truyển data order
     dispatch(action);
   };
   return (
