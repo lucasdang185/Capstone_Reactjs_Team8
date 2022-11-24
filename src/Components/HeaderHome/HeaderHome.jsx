@@ -3,28 +3,31 @@ import { NavLink } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import { ACCESSTOKEN, settings, USER_LOGIN } from "../../util/config";
 import {history} from '../../index' 
+import { useEffect } from "react";
 export default function HeaderHome() {
-  const {userProfile}=useSelector(state=>state.UserReducer);
+  const {userProfile,userLogin}=useSelector(state=>state.UserReducer);
   const { cart } = useSelector((state) => state.cartReducer);
-  console.log(userProfile)
+  // console.log(userProfile)
   const renderUserLogin=()=>{
-    if(userProfile.email){
-      history.push('/profile')
+    if(userLogin.email){
       return <>
-      <NavLink className='nav-link' to ='/profile'> {userProfile.name}</NavLink>
+      <NavLink className='nav-link' to ='/profile'  style={{textAlign:'center'}} > {userProfile.name}</NavLink>
       <button className='nav-link' style={{background:'none', border:'none'}} onClick={()=>{
         settings.eraseCookie(ACCESSTOKEN,0);
         localStorage.removeItem(USER_LOGIN);
         localStorage.removeItem(ACCESSTOKEN);
         //Sau khi đăng xuất xong chuyển về trang  login đồng thời reload lại trang clear redux
         window.location.href='/login';
-      }}> Đăng xuất</button>
+      }}> Log out</button>
       </>
     }
     return <NavLink className='nav-link' to='/login'>Login</NavLink>
   };
-
-
+  useEffect(() => {
+    if(userLogin.email){
+      history.push('/profile')
+    }
+  },[userProfile]);
   const totalCart = () => {
     console.log({ cart });
     return cart?.reduce((total, prod, index) => {

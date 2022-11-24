@@ -30,7 +30,6 @@ export default function Profile() {
     }
   })
 
-
   return (
     <div className='container' onSubmit={frm.handleSubmit}>
       <h1>Profile</h1>
