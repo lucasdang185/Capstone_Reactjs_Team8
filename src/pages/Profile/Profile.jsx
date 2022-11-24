@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import {  changPass, changPasswordApi, getApiProfile, setComponentAction, userUpdateApi } from '../../redux/Reducer/UserReducer';
 import ChangePassword from './ChangePassword';
-import { ACCESSTOKEN, settings } from "../../util/config";
+import { ACCESSTOKEN, settings, USER_LOGIN } from "../../util/config";
 
 export default function Profile() {
   // const {userProfile}=useSelector(state=>state.UserReducer);
@@ -17,7 +17,7 @@ export default function Profile() {
   useEffect(() => {
     const action = getApiProfile(settings.getStorage(ACCESSTOKEN));
     dispatch(action);
-  }, []);
+  }, [userProfile]);
 
   const renderOrderHistory = () => {
     return userProfile?.ordersHistory?.map((order, index) => {
@@ -77,7 +77,11 @@ export default function Profile() {
       const action = userUpdateApi(values);
       dispatch(action);
       alert('Update successful')
-      console.log(values)  
+      // settings.eraseCookie(ACCESSTOKEN,0);
+      localStorage.removeItem(USER_LOGIN); 
+      localStorage.removeItem(ACCESSTOKEN);
+      window.location.href='/login';
+      // console.log(values)  
     }
   })
   
