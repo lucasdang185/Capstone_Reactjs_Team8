@@ -3,6 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProductDetailApi } from "../../redux/Reducer/productReducer";
 import { useParams, NavLink } from "react-router-dom";
 import {addToCartAction} from "../../redux/Reducer/cartReducer"
+import { history } from "../..";
+import {
+  ACCESSTOKEN,
+  settings
+} from "../../util/config";
 
 
 
@@ -21,8 +26,15 @@ export default function Detail() {
 
   const addNewProd = (productDetail) => {
     // dispatch lên redux 1 productDetail
+    let toKen = settings.getStorage(ACCESSTOKEN);
+    if (toKen === null) {
+      history.push("/login");
+    } else {
       const action = addToCartAction(productDetail);
       dispatch(action);
+    }
+      // const action = addToCartAction(productDetail);
+      // dispatch(action);
   };
 
 

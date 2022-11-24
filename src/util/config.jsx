@@ -21,14 +21,17 @@ export const settings = {
             const data = JSON.parse(localStorage.getItem(name))
             return data
         }
-        return;//undefined
+        return null;//undefined
     },
+    // getStore: (name) => {
+    //     return localStorage.getItem(name);
+    //   },
     getStorage: (name) => {
         if (localStorage.getItem(name)) {
             const data = (localStorage.getItem(name))
             return data
         }
-        return;//undefined
+        return null;//undefined
     },
     setCookieJson:(name,value,days)=>{   
         var expires = "";

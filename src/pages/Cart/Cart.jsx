@@ -2,6 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {tangGiamSL,deleteCartAction,postOrderAction} from "../../redux/Reducer/cartReducer"
 
+import {
+  settings,
+  USER_LOGIN,
+} from "../../util/config";
+
 export default function Cart() {
   const { cart, order } = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
@@ -21,7 +26,10 @@ export default function Cart() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let { email } = settings.getStorageJson(USER_LOGIN);
     let order = {
+      email: email,
       orderDetail: cart,
     };
     const action = postOrderAction(order); // truyển data order
@@ -87,7 +95,7 @@ export default function Cart() {
         </tbody>
       </table>
       <div>
-        <button className="btn-submit" type="submit">
+        <button className="btn-submit" type="submit" onClick={handleSubmit}>
           SUBMIT ORDER
         </button>
       </div>

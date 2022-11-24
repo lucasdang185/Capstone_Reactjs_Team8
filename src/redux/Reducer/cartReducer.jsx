@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { history } from "../..";
+
 const initialState = {
     cart:[],
     order: {
@@ -9,6 +11,7 @@ const initialState = {
             quantity: "",
           },
         ],
+        email: "",
       },
 }
 
@@ -66,3 +69,21 @@ const cartReducer = createSlice({
 export const {addToCartAction,totalCartAction,tangGiamSL,deleteCartAction,postOrderAction} = cartReducer.actions;
 export default cartReducer.reducer;
 
+export const postOrder = (value) => {
+  return async (dispatch) => {
+    try {
+      let result = await axios({
+        url: "https://shop.cyberlearn.vn/api/Users/order",
+        method: "POST",
+        data: value,
+      });
+      console.log(result.data.content);
+      alert(result.data.content);
+      const action = postOrderAction(value);
+      dispatch(action);
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
