@@ -3,6 +3,14 @@
     margin: 0;
     box-sizing: border-box;
 }
+.orderHistory{
+  .table{
+    table-layout: fixed;
+    .history-bar{
+      background-color: rgb(155, 155, 173);
+    }
+  }
+}
 
 
 .container{

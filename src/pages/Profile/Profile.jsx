@@ -1,15 +1,65 @@
 import { useFormik } from 'formik';
+import moment from "moment";
 import * as yup from 'yup'
 import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import {  changPass, changPasswordApi, getApiProfile, setComponentAction, userUpdateApi } from '../../redux/Reducer/UserReducer';
 import ChangePassword from './ChangePassword';
+import { ACCESSTOKEN, settings } from "../../util/config";
+
 export default function Profile() {
   // const {userProfile}=useSelector(state=>state.UserReducer);
-  const { userProfile, userUpdate, newPassword } = useSelector(state => state.UserReducer)
+  const { userLogin,userProfile, userUpdate, newPassword } = useSelector(state => state.UserReducer)
   console.log(userProfile)
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   const action = getApiProfile(settings.getStorage(ACCESSTOKEN));
+  //   dispatch(action);
+  // }, []);
+
+  const renderOrderHistory = () => {
+    return userProfile?.ordersHistory?.map((order, index) => {
+      return (
+        <div className="orderHistory mt-2" key={index}>
+          <h4>
+            + Orders have been placed on{" "}
+            {moment(order?.date).format("DD/MM/YYYY hh:mm:ss A")}
+          </h4>
+          <table className="table">
+            <thead className='history-bar'>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>img</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {order?.orderDetail.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{order.id}</td>
+                    <td>{item.name} </td>
+                    <td>
+                      <img src={item.image} width={50} alt="..." />
+                    </td>
+                    <td>{item.price}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.price * item.quantity}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      );
+    });
+  };
+ 
   const frm = useFormik({
     enableReinitialize:true,
     initialValues: {
@@ -88,11 +138,14 @@ export default function Profile() {
           </form>
           <button className='btnProfile' onClick={() => {
               frm.handleSubmit()
-            }}>Submit</button>
+            }}>Update</button>
         </div>
       </div>
-
-
+      <hr />
+      <div className="">
+        <button className="btn btn-success text-light">Order history</button>
+      </div>
+      {renderOrderHistory()}
     </div>
   )
 }
