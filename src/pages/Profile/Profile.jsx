@@ -14,10 +14,10 @@ export default function Profile() {
   console.log(userProfile)
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const action = getApiProfile(settings.getStorage(ACCESSTOKEN));
-  //   dispatch(action);
-  // }, []);
+  useEffect(() => {
+    const action = getApiProfile(settings.getStorage(ACCESSTOKEN));
+    dispatch(action);
+  }, []);
 
   const renderOrderHistory = () => {
     return userProfile?.ordersHistory?.map((order, index) => {
