@@ -127,6 +127,6 @@ export const userUpdateApi=(userUpdate)=>{
 export const changPasswordApi=(userPassword)=>{
   return async dispatch=>{
     const result= await http.post('/api/Users/changePassword', userPassword)
-    console.log(userPassword)
+    // console.log(userPassword)
   }
 }
