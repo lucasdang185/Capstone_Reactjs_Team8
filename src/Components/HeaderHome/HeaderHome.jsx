@@ -1,33 +1,41 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import { ACCESSTOKEN, settings, USER_LOGIN } from "../../util/config";
-import {history} from '../../index' 
+import { history } from '../../index'
 import { useEffect } from "react";
 export default function HeaderHome() {
-  const {userProfile,userLogin}=useSelector(state=>state.UserReducer);
+  const { userProfile, userLogin } = useSelector(state => state.UserReducer);
   const { cart } = useSelector((state) => state.cartReducer);
   // console.log(userProfile)
-  const renderUserLogin=()=>{
-    if(userLogin.email){
+  const renderUserLogin = () => {
+    if (userLogin.email) {
       return <>
-      <NavLink className='nav-link' to ='/profile'  style={{textAlign:'center'}} > {userProfile.name}</NavLink>
-      <button className='nav-link' style={{background:'none', border:'none'}} onClick={()=>{
-        settings.eraseCookie(ACCESSTOKEN,0);
-        localStorage.removeItem(USER_LOGIN);
-        localStorage.removeItem(ACCESSTOKEN);
-        //Sau khi đăng xuất xong chuyển về trang  login đồng thời reload lại trang clear redux
-        window.location.href='/login';
-      }}> Log out</button>
+        <div style={{
+          display: 'flex'
+        }}>
+          <div className=" flex-item" >
+            <NavLink className={({ isActive }) => isActive ? 'nav-link bg-warning text-white' : 'nav-link'} to='/profile' style={{ textAlign: 'center', borderRadius:'5px' }} >{userProfile.name}</NavLink>
+          </div>
+          <div className="flex-item">
+            <button className='nav-link' style={{ background: 'none', border: 'none' }} onClick={() => {
+              settings.eraseCookie(ACCESSTOKEN, 0);
+              localStorage.removeItem(USER_LOGIN);
+              localStorage.removeItem(ACCESSTOKEN);
+              //Sau khi đăng xuất xong chuyển về trang  login đồng thời reload lại trang clear redux
+              window.location.href = '/login';
+            }}> Log out</button>
+          </div>
+        </div>
       </>
     }
-    return <NavLink className='nav-link' to='/login'>Login</NavLink>
+    return <NavLink className={({ isActive }) => isActive ? 'nav-link bg-warning text-white' : 'nav-link'} style={{ borderRadius: '5px' }} to='/login'>Login</NavLink>
   };
   useEffect(() => {
-    if(userLogin.email){
+    if (userLogin.email) {
       history.push('/profile')
     }
-  },[userProfile]);
+  }, [userProfile]);
   const totalCart = () => {
     console.log({ cart });
     return cart?.reduce((total, prod, index) => {
@@ -39,9 +47,9 @@ export default function HeaderHome() {
       className="navbar navbar-expand-sm navbar-dark "
       style={{ background: "#000" }}
     >
-      <a className="navbar-brand" href="#">
+      <NavLink className="navbar-brand" to={'/'}>
         <img src="./img/image 3.png" style={{ padding: 0 }} alt="..." />
-      </a>
+      </NavLink>
       <button
         className="navbar-toggler d-lg-none"
         type="button"
@@ -54,16 +62,10 @@ export default function HeaderHome() {
       <div className="collapse navbar-collapse" id="collapsibleNavId">
         <ul className="navbar-nav me-auto mt-2 mt-lg-0">
           <li className="nav-item">
-            <NavLink
-              className="nav-link active"
-              to={"/home"}
-              aria-current="page"
-            >
-              Home
-            </NavLink>
+            <NavLink className={({ isActive }) => isActive ? 'nav-link bg-warning text-white' : 'nav-link'} style={({ isActive }) => isActive ? { color: 'red', borderRadius: '5px' } : {}} to="/home">Home</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/register">
+            <NavLink className={({ isActive }) => isActive ? 'nav-link bg-warning text-white' : 'nav-link'} style={({ isActive }) => isActive ? { color: 'red', borderRadius: '5px' } : {}} to="/register">
               Register
             </NavLink>
           </li>

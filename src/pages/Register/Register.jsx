@@ -3,6 +3,7 @@ import { Formik, useFormik } from 'formik'
 import * as yup from 'yup'
 import { registerApi } from '../../redux/Reducer/UserReducer'
 import { useDispatch } from 'react-redux'
+import { history } from '../..'
 export default function Register() {
   const {userRegister}=useDispatch(state=>state.UserReducer)
   console.log(userRegister)
@@ -26,6 +27,8 @@ export default function Register() {
     onSubmit: (values) => {
       const action = registerApi(values);
       dispatch(action);
+      alert('Sign Up Success');
+      history.push('/login');
     },  
   })
 
