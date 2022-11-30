@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Capstone_Reactjs_Team8/static/css/main.f6fded06.css",
+    "main.js": "/Capstone_Reactjs_Team8/static/js/main.7adbf26a.js",
+    "static/media/image 6.png": "/Capstone_Reactjs_Team8/static/media/image 6.457d06471de62ee6a02a.png",
+    "index.html": "/Capstone_Reactjs_Team8/index.html",
+    "main.f6fded06.css.map": "/Capstone_Reactjs_Team8/static/css/main.f6fded06.css.map",
+    "main.7adbf26a.js.map": "/Capstone_Reactjs_Team8/static/js/main.7adbf26a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f6fded06.css",
+    "static/js/main.7adbf26a.js"
+  ]
+}
